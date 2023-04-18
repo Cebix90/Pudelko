@@ -3,9 +3,25 @@ namespace PudelkoLibrary
 {
     public sealed class Pudelko
     {
-        public double A { get; init; }
-        public double B { get; init; }
-        public double C { get; init; }
+        public double A
+        {
+            get { return (Unit == UnitOfMeasure.milimeter) ? A / 1000 : ((Unit == UnitOfMeasure.centimeter) ? A / 100 : A); }
+            init { }
+        }
+
+        public double B
+        {
+            get { return (Unit == UnitOfMeasure.milimeter) ? B / 1000 : ((Unit == UnitOfMeasure.centimeter) ? B / 100 : B); }   
+            init { }
+        }
+
+        public double C
+        {
+            get {  return (Unit == UnitOfMeasure.milimeter) ? C / 1000 : ((Unit == UnitOfMeasure.centimeter) ? C / 100 : C); }
+
+            init { }
+        }
+
         public UnitOfMeasure Unit { get; init; }
 
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
@@ -26,7 +42,7 @@ namespace PudelkoLibrary
                 if (b.HasValue)
                     B /= 1000;
                 if (c.HasValue)
-                    C /= 1000;
+                   C /= 1000;
             }
             else if (Unit == UnitOfMeasure.centimeter)
             {
@@ -47,6 +63,8 @@ namespace PudelkoLibrary
                 throw new ArgumentOutOfRangeException();
             }
         }
+
+        
     }
 }
     
