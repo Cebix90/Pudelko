@@ -15,12 +15,10 @@ namespace PudelkoLibrary
             C = c ?? 0.1;
             Unit = unit;
 
-            // odcinamy cyfry poza zakresem dla określonej jednostki
             A = Math.Min(Math.Truncate(A * 1000) / 1000, 100000);
             B = Math.Min(Math.Truncate(B * 1000) / 1000, 100000);
             C = Math.Min(Math.Truncate(C * 1000) / 1000, 100000);
 
-            // zamieniamy wartości na metry
             if (Unit == UnitOfMeasure.milimeter)
             {
                 if(a.HasValue)
@@ -40,14 +38,13 @@ namespace PudelkoLibrary
                     C /= 100;
             }
 
-            // sprawdzamy ograniczenia wymiarów
             if (A < 0.001 || B < 0.001 || C < 0.001)
             {
-                throw new ArgumentOutOfRangeException("Wymiary pudełka muszą być dodatnie!");
+                throw new ArgumentOutOfRangeException();
             }
             if (A > 10 || B > 10 || C > 10)
             {
-                throw new ArgumentOutOfRangeException("Wymiary pudełka nie mogą przekroczyć 10 m!");
+                throw new ArgumentOutOfRangeException();
             }
         }
     }
