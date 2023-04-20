@@ -28,45 +28,7 @@ namespace PudelkoLibrary
 
         public UnitOfMeasure Unit { get; init; }
 
-        /*public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
-        {
-            A = a ?? 0.1;
-            B = b ?? 0.1;
-            C = c ?? 0.1;
-            Unit = unit;
-
-            A = Math.Min(Math.Truncate(A * 1000) / 1000, 100000);
-            B = Math.Min(Math.Truncate(B * 1000) / 1000, 100000);
-            C = Math.Min(Math.Truncate(C * 1000) / 1000, 100000);
-
-            if (Unit == UnitOfMeasure.milimeter)
-            {
-                if(a.HasValue)
-                    A /= 1000;
-                if (b.HasValue)
-                    B /= 1000;
-                if (c.HasValue)
-                   C /= 1000;
-            }
-            else if (Unit == UnitOfMeasure.centimeter)
-            {
-                if (a.HasValue)
-                    A /= 100;
-                if (b.HasValue)
-                    B /= 100;
-                if (c.HasValue)
-                    C /= 100;
-            }
-
-            if (A < 0.001 || B < 0.001 || C < 0.001)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (A > 10 || B > 10 || C > 10)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-        }*/
+       
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
         {
             _a = a ?? 0.1;
@@ -78,20 +40,20 @@ namespace PudelkoLibrary
             if (Unit == UnitOfMeasure.milimeter)
             {
                 if (a.HasValue)
-                    A /= 1000;
+                    _a /= 1000;
                 if (b.HasValue)
-                    B /= 1000;
+                    _b /= 1000;
                 if (c.HasValue)
-                    C /= 1000;
+                    _c /= 1000;
             }
             else if (Unit == UnitOfMeasure.centimeter)
             {
                 if (a.HasValue)
-                    A /= 100;
+                    _a /= 100;
                 if (b.HasValue)
-                    B /= 100;
+                    _b /= 100;
                 if (c.HasValue)
-                    C /= 100;
+                    _c /= 100;
             }
 
             _a = Math.Min(Math.Truncate(_a * 1000) / 1000, 100000);
