@@ -2,7 +2,7 @@
 
 namespace PudelkoLibrary
 {
-    public sealed class Pudelko : IFormattable
+    public sealed class Pudelko : IFormattable, IEquatable<Pudelko>
     {
         #region Constructor
         private double _a;
@@ -93,11 +93,35 @@ namespace PudelkoLibrary
         }
         #endregion
 
-        #region BoxVolume method
-        public double FieldBox() 
-        { 
-            return Math.Round(2*(A * B + B * C + A * C), 6);
+        #region Equals
+        public bool Equals(Pudelko? other)
+        {
+            if (this is null && other is null) return true;
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return this.Volume == other.Volume && this.Field == other.Field;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is null) return false;
+            if (obj is not Pudelko) return false;
+
+            return Equals(obj as Pudelko);
+        }
+
+        public override int GetHashCode() => HashCode.Combine(A, B, C);
+
+        public static bool operator ==(Pudelko left, Pudelko right)
+        {
+            if (left is null && right is null) return true;
+            if (left is null) return false;
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Pudelko left, Pudelko right) => !(left == right);
         #endregion
     }
 }

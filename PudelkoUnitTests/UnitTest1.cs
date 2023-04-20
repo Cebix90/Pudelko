@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PudelkoLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Threading;
 
@@ -435,7 +436,17 @@ namespace PudelkoUnitTests
         #endregion
 
         #region Equals ===========================================
-        // ToDo
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(3, 3, 0.5, UnitOfMeasure.meter, 300, 300, 50, UnitOfMeasure.centimeter, true)]
+        [DataRow(3, 3, 0.5, UnitOfMeasure.meter, 500, 3000, 3000, UnitOfMeasure.milimeter, true)]
+        [DataRow(3, 0.5, 3, UnitOfMeasure.meter, 0.5, 3, 3, UnitOfMeasure.meter, true)]
+        [DataRow(3, 0.5, 3, UnitOfMeasure.meter, 3, 3, 3, UnitOfMeasure.meter, false)]
+        public void Equals_For_TwoBoxes_WithFullData(double a, double b, double c, UnitOfMeasure d, double e, double f, double g, UnitOfMeasure h, bool expectedResult)
+        {
+            var p1 = new Pudelko(a, b, c, d);
+            var p2 = new Pudelko(e, f, g, h);
+            Assert.AreEqual(expectedResult, p1.Equals(p2));
+        }
         #endregion
 
         #region Operators overloading ===========================
