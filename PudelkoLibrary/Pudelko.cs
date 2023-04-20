@@ -1,7 +1,8 @@
-﻿
+﻿using System.Globalization;
+
 namespace PudelkoLibrary
 {
-    public sealed class Pudelko
+    public sealed class Pudelko : IFormattable
     {
         #region Constructor
         private double _a;
@@ -21,22 +22,23 @@ namespace PudelkoLibrary
 
         public double C
         {
-            get {  return _c; }
+            get { return _c; }
 
             init { _c = value; }
         }
 
-        public UnitOfMeasure Unit { get; init; }
+        private UnitOfMeasure _unit;
+        public UnitOfMeasure Unit { get { return _unit; } init { _unit = value; } }
 
-       
+
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
         {
             _a = a ?? 0.1;
             _b = b ?? 0.1;
             _c = c ?? 0.1;
-            Unit = unit;
+            _unit = unit;
 
-            
+
             if (Unit == UnitOfMeasure.milimeter)
             {
                 if (a.HasValue)
@@ -68,11 +70,25 @@ namespace PudelkoLibrary
         #endregion
 
         #region ToString method
-        /* public override string ToString(double a, double b, double c, )
-         {
-             return base.ToString();
-         }*/
+        public override string ToString()
+        {
+            return ToString("m");
+        }
+
+        public string ToString(string format, IFormatProvider? formatProvider = null)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+
+            if (format == null || format == "m")
+                return $"{A.ToString("F3", culture)} m × {B.ToString("F3", culture)} m × {C.ToString("F3", culture)} m";
+            else if (format == "cm")
+                return $"{(A * 100).ToString("F1", culture)} cm × {(B * 100).ToString("F1", culture)} cm × {(C * 100).ToString("F1", culture)} cm";
+            else if (format == "mm")
+                return $"{(A * 1000).ToString("F0", culture)} mm × {(B * 1000).ToString("F0", culture)} mm × {(C * 1000).ToString("F0", culture)} mm";
+            else
+                throw new FormatException();
+        }
         #endregion
     }
 }
-    
+

@@ -19,9 +19,9 @@ namespace PudelkoUnitTests
             Assert.AreEqual(expectedB, p.B, delta: accuracy);
             Assert.AreEqual(expectedC, p.C, delta: accuracy);
         }
-
+        
         #region Constructor tests ================================
-
+        
         [TestMethod, TestCategory("Constructors")]
         public void Constructor_Default()
         {
@@ -398,7 +398,7 @@ namespace PudelkoUnitTests
 
         #endregion
 
-        /*#region ToString tests ===================================
+        #region ToString tests ===================================
 
         [TestMethod, TestCategory("String representation")]
         public void ToString_Default_Culture_EN()
@@ -428,6 +428,6 @@ namespace PudelkoUnitTests
             var stringformatedrepreentation = p.ToString("wrong code");
         }
 
-        #endregion*/
+        #endregion
     }
 }

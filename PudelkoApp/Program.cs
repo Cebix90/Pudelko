@@ -7,7 +7,7 @@ namespace PudelkoApp
     {
         static void Main(string[] args)
         {
-            Pudelko p = new Pudelko(100.1, unit: UnitOfMeasure.centimeter);
+            var p = new Pudelko(2.5, 9.321, 0.1, unit: UnitOfMeasure.centimeter);
 
         }
     }
