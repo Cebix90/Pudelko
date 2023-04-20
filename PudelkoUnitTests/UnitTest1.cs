@@ -427,7 +427,72 @@ namespace PudelkoUnitTests
             var p = new Pudelko(1);
             var stringformatedrepreentation = p.ToString("wrong code");
         }
+        #endregion
+
+        #region Pole, Objêtoœæ ===================================
+        // ToDo
 
         #endregion
+
+        #region Equals ===========================================
+        // ToDo
+        #endregion
+
+        #region Operators overloading ===========================
+        // ToDo
+        #endregion
+
+        /*#region Conversions =====================================
+        [TestMethod]
+        public void ExplicitConversion_ToDoubleArray_AsMeters()
+        {
+            var p = new Pudelko(1, 2.1, 3.231);
+            double[] tab = (double[])p;
+            Assert.AreEqual(3, tab.Length);
+            Assert.AreEqual(p.A, tab[0]);
+            Assert.AreEqual(p.B, tab[1]);
+            Assert.AreEqual(p.C, tab[2]);
+        }
+
+        [TestMethod]
+        public void ImplicitConversion_FromAalueTuple_As_Pudelko_InMilimeters()
+        {
+            var (a, b, c) = (2500, 9321, 100); // in milimeters, ValueTuple
+            Pudelko p = (a, b, c);
+            Assert.AreEqual((int)(p.A * 1000), a);
+            Assert.AreEqual((int)(p.B * 1000), b);
+            Assert.AreEqual((int)(p.C * 1000), c);
+        }
+
+        #endregion
+
+        #region Indexer, enumeration ============================
+        [TestMethod]
+        public void Indexer_ReadFrom()
+        {
+            var p = new Pudelko(1, 2.1, 3.231);
+            Assert.AreEqual(p.A, p[0]);
+            Assert.AreEqual(p.B, p[1]);
+            Assert.AreEqual(p.C, p[2]);
+        }
+
+        [TestMethod]
+        public void ForEach_Test()
+        {
+            var p = new Pudelko(1, 2.1, 3.231);
+            var tab = new[] { p.A, p.B, p.C };
+            int i = 0;
+            foreach (double x in p)
+            {
+                Assert.AreEqual(x, tab[i]);
+                i++;
+            }
+        }
+
+        #endregion
+
+        #region Parsing =========================================
+
+        #endregion*/
     }
 }

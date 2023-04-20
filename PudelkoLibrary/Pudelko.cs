@@ -30,6 +30,9 @@ namespace PudelkoLibrary
         private UnitOfMeasure _unit;
         public UnitOfMeasure Unit { get { return _unit; } init { _unit = value; } }
 
+        public double Volume {  get { return Math.Round(A * B * C, 9); } }
+        public double Field { get { return Math.Round(2 * (A * B + B * C + A * C), 6); } }
+
 
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
         {
@@ -87,6 +90,13 @@ namespace PudelkoLibrary
                 return $"{(A * 1000).ToString("F0", culture)} mm × {(B * 1000).ToString("F0", culture)} mm × {(C * 1000).ToString("F0", culture)} mm";
             else
                 throw new FormatException();
+        }
+        #endregion
+
+        #region BoxVolume method
+        public double FieldBox() 
+        { 
+            return Math.Round(2*(A * B + B * C + A * C), 6);
         }
         #endregion
     }
