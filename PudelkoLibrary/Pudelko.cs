@@ -123,6 +123,44 @@ namespace PudelkoLibrary
 
         public static bool operator !=(Pudelko left, Pudelko right) => !(left == right);
         #endregion
+
+        #region Override + operator
+        public static Pudelko operator +(Pudelko p1, Pudelko p2)
+        {
+            double p1Max = Math.Max(Math.Max(p1.A, p1.B), p1.C);
+            double p1Min = Math.Min(Math.Min(p1.A, p1.B), p1.C);
+            double p1Mid = p1.A + p1.B + p1.C - p1Max - p1Min;
+
+            double p2Max = Math.Max(Math.Max(p2.A, p2.B), p2.C);
+            double p2Min = Math.Min(Math.Min(p2.A, p2.B), p2.C);
+            double p2Mid = p2.A + p2.B + p2.C - p2Max - p2Min;
+
+            if (p1Max + p2Max <= 10)
+            {
+                double p3Min = Math.Max(p1Min, p2Min);
+                double p3Mid = Math.Max(p1Mid, p2Mid);
+                double p3Max = p1Max + p2Max;
+
+                return new Pudelko(p3Max, p3Mid, p3Min);
+            } 
+            else if(p1Mid + p2Mid <= 10) 
+            {
+                double p3Max = Math.Max(p1Max, p1Max);
+                double p3Min = Math.Max(p1Min, p2Min);
+                double p3Mid = p1Mid + p2Mid;
+
+                return new Pudelko(p3Max, p3Mid, p3Min);
+            } 
+            else
+            {
+                double p3Max = Math.Max(p1Max, p2Max);
+                double p3Mid = Math.Max(p1Mid, p2Mid);
+                double p3Min = p1Min + p2Min;
+
+                return new Pudelko(p3Max, p3Mid, p3Min);
+            }
+        }
+        #endregion
     }
 }
 
