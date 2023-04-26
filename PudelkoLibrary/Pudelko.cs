@@ -175,7 +175,7 @@ namespace PudelkoLibrary
         }
         #endregion
 
-        #region indexer
+        #region edge length display by indexer & foreach loop
         public double this[int i]
         {
             get => i == 0 ? A : i == 1 ? B : i == 2 ? C : throw new IndexOutOfRangeException();
@@ -191,6 +191,51 @@ namespace PudelkoLibrary
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+        #endregion
+
+        #region parse
+        public static Pudelko Parse(string s)
+        {
+            string[] parts = s.Split('×');
+
+            if (parts.Length != 3)
+            {
+                throw new FormatException("Invalid format");
+            }
+
+            double a = ParseDimension(parts[0].Trim());
+            double b = ParseDimension(parts[1].Trim());
+            double c = ParseDimension(parts[2].Trim());
+
+            return new Pudelko(a, b, c);
+        }
+
+        private static readonly Dictionary<string, double> UnitMultipliers = new Dictionary<string, double>
+        {
+            { "m", 1.0 },
+            { "cm", 0.01 },
+            { "mm", 0.001 }
+        };
+
+        private static double ParseDimension(string s)
+        {
+            string[] parts = s.Split(' ');
+
+            if (parts.Length != 2)
+            {
+                throw new FormatException("Nieprawidłowy format jednostki miary");
+            }
+
+            double value = double.Parse(parts[0], CultureInfo.InvariantCulture);
+            string unit = parts[1];
+
+            if (!UnitMultipliers.ContainsKey(unit))
+            {
+                throw new FormatException("Nieprawidłowa jednostka miary");
+            }
+
+            return value * UnitMultipliers[unit];
         }
         #endregion
     }

@@ -7,33 +7,7 @@ namespace PudelkoApp
     {
         static void Main(string[] args)
         {
-            /*var p = new Pudelko(3, 3, 0.5, unit: UnitOfMeasure.meter);
-            var a = new Pudelko(3, 3, 0.5);
-            var b = new Pudelko(3, 0.5, 3, unit: UnitOfMeasure.meter);
-            var c = new Pudelko(3, 3, 3, unit: UnitOfMeasure.meter);
-            var d = new Pudelko(300, 300, 50, unit: UnitOfMeasure.centimeter);
-            var e = new Pudelko(500, 3000, 3000, unit: UnitOfMeasure.milimeter);
-            var f = new Pudelko();
-            var g = new Pudelko();
-            var h = new Pudelko(0.1);
-            var i = new Pudelko(0.1, 0.1, 0.1);
-
-            Console.WriteLine(p == a);
-            Console.WriteLine(p == b);
-            Console.WriteLine(p == c);
-            Console.WriteLine(p != c);
-            Console.WriteLine(p == d);
-            Console.WriteLine(b == e);
-
-            Console.WriteLine(b.Equals(e));
-            Console.WriteLine(Equals(b,e));
-
-            Console.WriteLine(f != g);
-            Console.WriteLine(f == h);
-            Console.WriteLine(f == i);*/
-
-
-            var p = new Pudelko(8, 4, 2, unit: UnitOfMeasure.meter);
+            /*var p = new Pudelko(8, 4, 2, unit: UnitOfMeasure.meter);
             var a = new Pudelko(5, 3, 2);
 
             var p3 = p + a;
@@ -50,7 +24,24 @@ namespace PudelkoApp
             Console.WriteLine(p4.Volume);
             Console.WriteLine(p4.A);
             Console.WriteLine(p4.B);
-            Console.WriteLine(p4.C);
+            Console.WriteLine(p4.C);*/
+
+            string s = "2.500 cm × 9.321 cm × 0.100 cm";
+
+            var p = new Pudelko(2.5, 9.321, 0.1);
+            var p1 = new Pudelko(2.5, 9.321, 0.1, UnitOfMeasure.meter);
+            var p2 = new Pudelko(2.5, 9.32, 0.1, UnitOfMeasure.centimeter);
+            var p3 = new Pudelko(2500, 9321, 100, UnitOfMeasure.milimeter);
+
+            var ps = Pudelko.Parse(s);
+
+            Console.WriteLine(p == ps);
+            Console.WriteLine(p == p1);
+            Console.WriteLine(p1 == ps);
+            Console.WriteLine(p2 == ps);
+            Console.WriteLine(p3 == ps);
+
+
         }
     }
 }
