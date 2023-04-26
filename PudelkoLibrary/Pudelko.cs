@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Globalization;
 
 namespace PudelkoLibrary
 {
-    public sealed class Pudelko : IFormattable, IEquatable<Pudelko>
+    public sealed class Pudelko : IFormattable, IEquatable<Pudelko>, IEnumerable<double>
     {
         #region Constructor
         private double _a;
@@ -171,6 +172,25 @@ namespace PudelkoLibrary
         public static implicit operator Pudelko(ValueTuple<int,int,int> dimensions)
         {
             return new Pudelko(dimensions.Item1, dimensions.Item2, dimensions.Item3, UnitOfMeasure.milimeter);
+        }
+        #endregion
+
+        #region indexer
+        public double this[int i]
+        {
+            get => i == 0 ? A : i == 1 ? B : i == 2 ? C : throw new IndexOutOfRangeException();
+        }
+
+        public IEnumerator<double> GetEnumerator()
+        {
+            yield return A;
+            yield return B;
+            yield return C;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
         #endregion
     }
