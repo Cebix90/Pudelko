@@ -3,7 +3,7 @@ using PudelkoLibrary;
 
 namespace PudelkoApp
 {
-    class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
@@ -26,7 +26,7 @@ namespace PudelkoApp
             Console.WriteLine(p4.B);
             Console.WriteLine(p4.C);*/
 
-            string s = "2.500 cm × 9.321 cm × 0.100 cm";
+            /*string s = "2.500 cm × 9.321 cm × 0.100 cm";
 
             var p = new Pudelko(2.5, 9.321, 0.1);
             var p1 = new Pudelko(2.5, 9.321, 0.1, UnitOfMeasure.meter);
@@ -39,9 +39,24 @@ namespace PudelkoApp
             Console.WriteLine(p == p1);
             Console.WriteLine(p1 == ps);
             Console.WriteLine(p2 == ps);
-            Console.WriteLine(p3 == ps);
+            Console.WriteLine(p3 == ps);*/
 
+            var p = new Pudelko(2.03, 4.3, 9.66, UnitOfMeasure.meter);
+            Console.WriteLine(p.ToString("mm"));
+            Console.WriteLine(p.Volume);
 
+            var pk = Kompresuj(p);
+            Console.WriteLine(pk.ToString("mm"));
+            Console.WriteLine(pk.Volume);
+        }
+
+        public static Pudelko Kompresuj(this Pudelko p)
+        {
+            double volume = p.Volume;
+
+            double a = Math.Pow(volume, 1.0 / 3.0);
+
+            return new Pudelko(a,a,a);
         }
     }
 }

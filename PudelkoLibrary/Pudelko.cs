@@ -224,7 +224,7 @@ namespace PudelkoLibrary
 
             if (parts.Length != 2)
             {
-                throw new FormatException("Nieprawidłowy format jednostki miary");
+                throw new FormatException("Invalid unit of measure format");
             }
 
             double value = double.Parse(parts[0], CultureInfo.InvariantCulture);
@@ -232,7 +232,7 @@ namespace PudelkoLibrary
 
             if (!UnitMultipliers.ContainsKey(unit))
             {
-                throw new FormatException("Nieprawidłowa jednostka miary");
+                throw new FormatException("Invalid measurement unit");
             }
 
             return value * UnitMultipliers[unit];
