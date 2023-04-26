@@ -30,7 +30,7 @@ namespace PudelkoLibrary
         private UnitOfMeasure _unit;
         public UnitOfMeasure Unit { get { return _unit; } init { _unit = value; } }
 
-        public double Volume {  get { return Math.Round(A * B * C, 9); } }
+        public double Volume { get { return Math.Round(A * B * C, 9); } }
         public double Field { get { return Math.Round(2 * (A * B + B * C + A * C), 6); } }
 
 
@@ -142,15 +142,15 @@ namespace PudelkoLibrary
                 double p3Max = p1Max + p2Max;
 
                 return new Pudelko(p3Max, p3Mid, p3Min);
-            } 
-            else if(p1Mid + p2Mid <= 10) 
+            }
+            else if (p1Mid + p2Mid <= 10)
             {
                 double p3Max = Math.Max(p1Max, p1Max);
                 double p3Min = Math.Max(p1Min, p2Min);
                 double p3Mid = p1Mid + p2Mid;
 
                 return new Pudelko(p3Max, p3Mid, p3Min);
-            } 
+            }
             else
             {
                 double p3Max = Math.Max(p1Max, p2Max);
@@ -159,6 +159,18 @@ namespace PudelkoLibrary
 
                 return new Pudelko(p3Max, p3Mid, p3Min);
             }
+        }
+        #endregion
+
+        #region Conversion
+        public static explicit operator double[](Pudelko p)
+        {
+            return new double[] { p.A, p.B, p.C };
+        }
+
+        public static implicit operator Pudelko(ValueTuple<int,int,int> dimensions)
+        {
+            return new Pudelko(dimensions.Item1, dimensions.Item2, dimensions.Item3, UnitOfMeasure.milimeter);
         }
         #endregion
     }

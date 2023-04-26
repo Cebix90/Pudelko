@@ -453,7 +453,7 @@ namespace PudelkoUnitTests
         // ToDo
         #endregion
 
-        /*#region Conversions =====================================
+        #region Conversions =====================================
         [TestMethod]
         public void ExplicitConversion_ToDoubleArray_AsMeters()
         {
@@ -476,7 +476,7 @@ namespace PudelkoUnitTests
         }
 
         #endregion
-
+        /*
         #region Indexer, enumeration ============================
         [TestMethod]
         public void Indexer_ReadFrom()
