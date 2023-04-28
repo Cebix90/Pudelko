@@ -28,7 +28,7 @@ namespace PudelkoApp
                 int result = p1.Volume.CompareTo(p2.Volume);
                 if (result != 0) return result;
 
-                result = p1.Field.CompareTo(p2.Field);
+                result = p1.SurfaceArea.CompareTo(p2.SurfaceArea);
                 if (result != 0) return result;
 
                 return (p1.A + p1.B + p1.C).CompareTo(p2.A + p2.B + p2.C);
@@ -60,9 +60,9 @@ namespace PudelkoApp
             Console.WriteLine($"p1 = {s3}");
             Console.WriteLine($"p1 = {s4}");
 
-            // Volume and Field properties
+            // Volume and SurfaceArea properties
             Console.WriteLine($"\nVolume = {p1.Volume} m\u00B3");
-            Console.WriteLine($"Field = {p1.Field} m\u00B2");
+            Console.WriteLine($"Field = {p1.SurfaceArea} m\u00B2");
 
             // Equals
             Console.WriteLine($"\np1 == p2: {p1 == p2}");

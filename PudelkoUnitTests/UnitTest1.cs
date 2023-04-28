@@ -443,16 +443,16 @@ namespace PudelkoUnitTests
             Assert.AreEqual(expectedVolumeResult, p.Volume);
         }
 
-        [DataTestMethod, TestCategory("Field")]
+        [DataTestMethod, TestCategory("SurfaceArea")]
         [DataRow(1.5, 2.0, 3.0, UnitOfMeasure.meter, 27.0)]
         [DataRow(200, 200, 200, UnitOfMeasure.centimeter, 24.0)]
         [DataRow(1000, 1000, 5000, UnitOfMeasure.milimeter, 22.0)]
         [DataRow(3.0, 1.5, 1.0, UnitOfMeasure.meter, 18.0)]
         [DataRow(15, 300, 10, UnitOfMeasure.milimeter, 0.0153)]
-        public void Field_All_Parameters(double a, double b, double c, UnitOfMeasure d, double expectedFieldResult)
+        public void SurfaceArea_All_Parameters(double a, double b, double c, UnitOfMeasure d, double expectedFieldResult)
         {
             var p = new Pudelko(a, b, c, d);
-            Assert.AreEqual(expectedFieldResult, p.Field);
+            Assert.AreEqual(expectedFieldResult, p.SurfaceArea);
         }
 
         #endregion

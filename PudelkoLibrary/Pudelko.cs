@@ -32,7 +32,7 @@ namespace PudelkoLibrary
         public UnitOfMeasure Unit { get { return _unit; } init { _unit = value; } }
 
         public double Volume { get { return Math.Round(A * B * C, 9); } }
-        public double Field { get { return Math.Round(2 * (A * B + B * C + A * C), 6); } }
+        public double SurfaceArea { get { return Math.Round(2 * (A * B + B * C + A * C), 6); } }
 
 
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
@@ -101,7 +101,7 @@ namespace PudelkoLibrary
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return this.Volume == other.Volume && this.Field == other.Field;
+            return this.Volume == other.Volume && this.SurfaceArea == other.SurfaceArea;
         }
 
         public override bool Equals(object? obj)
