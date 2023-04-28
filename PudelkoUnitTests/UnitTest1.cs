@@ -441,9 +441,33 @@ namespace PudelkoUnitTests
         [DataRow(3, 3, 0.5, UnitOfMeasure.meter, 500, 3000, 3000, UnitOfMeasure.milimeter, true)]
         [DataRow(3, 0.5, 3, UnitOfMeasure.meter, 0.5, 3, 3, UnitOfMeasure.meter, true)]
         [DataRow(3, 0.5, 3, UnitOfMeasure.meter, 3, 3, 3, UnitOfMeasure.meter, false)]
-        public void Equals_For_TwoBoxes_WithFullData(double a, double b, double c, UnitOfMeasure d, double e, double f, double g, UnitOfMeasure h, bool expectedResult)
+        public void Equals_For_TwoBoxes_With_Full_Data(double a, double b, double c, UnitOfMeasure d, double e, double f, double g, UnitOfMeasure h, bool expectedResult)
         {
             var p1 = new Pudelko(a, b, c, d);
+            var p2 = new Pudelko(e, f, g, h);
+            Assert.AreEqual(expectedResult, p1.Equals(p2));
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(3, 3, 0.5, 300, 300, 50, UnitOfMeasure.centimeter, true)]
+        [DataRow(3, 3, 0.5, 500, 3000, 3000, UnitOfMeasure.milimeter, true)]
+        [DataRow(3, 0.5, 3, 0.5, 3, 3, UnitOfMeasure.meter, true)]
+        [DataRow(3, 0.5, 3, 4, 3, 1, UnitOfMeasure.meter, false)]
+        public void Equals_For_TwoBoxes_One_Withouth_Full_Data(double a, double b, double c, double e, double f, double g, UnitOfMeasure h, bool expectedResult)
+        {
+            var p1 = new Pudelko(a, b, c);
+            var p2 = new Pudelko(e, f, g, h);
+            Assert.AreEqual(expectedResult, p1.Equals(p2));
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(3, 300, 10, 10, UnitOfMeasure.centimeter, true)]
+        [DataRow(3, 3000, 100, 100, UnitOfMeasure.milimeter, true)]
+        [DataRow(3, 0.1, 3, 0.1, UnitOfMeasure.meter, true)]
+        [DataRow(3, 4, 3, 1, UnitOfMeasure.meter, false)]
+        public void Equals_For_TwoBoxes_One_With_One_Parameter(double a, double e, double f, double g, UnitOfMeasure h, bool expectedResult)
+        {
+            var p1 = new Pudelko(a);
             var p2 = new Pudelko(e, f, g, h);
             Assert.AreEqual(expectedResult, p1.Equals(p2));
         }

@@ -41,13 +41,47 @@ namespace PudelkoApp
             Console.WriteLine(p2 == ps);
             Console.WriteLine(p3 == ps);*/
 
-            var p = new Pudelko(2.03, 4.3, 9.66, UnitOfMeasure.meter);
+            /*var p = new Pudelko(2.03, 4.3, 9.66, UnitOfMeasure.meter);
             Console.WriteLine(p.ToString("mm"));
             Console.WriteLine(p.Volume);
 
             var pk = Kompresuj(p);
             Console.WriteLine(pk.ToString("mm"));
-            Console.WriteLine(pk.Volume);
+            Console.WriteLine(pk.Volume);*/
+
+            var pudelka = new List<Pudelko>
+            {
+                new Pudelko(1.5, 2.0, 3.0),
+                new Pudelko(200, 200, 200, UnitOfMeasure.centimeter),
+                new Pudelko(1000, 1000, 5000, UnitOfMeasure.milimeter),
+                new Pudelko(3.0, 1.5, 1.0, UnitOfMeasure.meter),
+                new Pudelko(15, 300, 10, UnitOfMeasure.milimeter),
+            };
+
+            Console.WriteLine("Initial List in meters:");
+            foreach (var p in pudelka)
+            {
+                Console.WriteLine(p.ToString());
+            }
+
+            Comparison<Pudelko> kryteriumSortowania = (p1, p2) =>
+            {
+                int result = p1.Volume.CompareTo(p2.Volume);
+                if (result != 0) return result;
+
+                result = p1.Field.CompareTo(p2.Field);
+                if (result != 0) return result;
+
+                return (p1.A + p1.B + p1.C).CompareTo(p2.A + p2.B + p2.C);
+            };
+
+            pudelka.Sort(kryteriumSortowania);
+
+            Console.WriteLine("\nSorted List in meters:");
+            foreach (var p in pudelka)
+            {
+                Console.WriteLine(p.ToString());
+            }
         }
 
         public static Pudelko Kompresuj(this Pudelko p)
