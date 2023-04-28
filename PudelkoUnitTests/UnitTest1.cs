@@ -431,7 +431,29 @@ namespace PudelkoUnitTests
         #endregion
 
         #region Pole, Objêtoœæ ===================================
-        // ToDo
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(1.5, 2.0, 3.0, UnitOfMeasure.meter, 9.0)]
+        [DataRow(200, 200, 200, UnitOfMeasure.centimeter, 8.0)]
+        [DataRow(1000, 1000, 5000, UnitOfMeasure.milimeter, 5.0)]
+        [DataRow(3.0, 1.5, 1.0, UnitOfMeasure.meter, 4.5)]
+        [DataRow(15, 300, 10, UnitOfMeasure.milimeter, 0.000045)]
+        public void Volume_All_Parameters (double a, double b, double c, UnitOfMeasure d, double expectedVolumeResult)
+        {
+            var p = new Pudelko(a, b, c, d);
+            Assert.AreEqual(expectedVolumeResult, p.Volume);
+        }
+
+        [DataTestMethod, TestCategory("Field")]
+        [DataRow(1.5, 2.0, 3.0, UnitOfMeasure.meter, 27.0)]
+        [DataRow(200, 200, 200, UnitOfMeasure.centimeter, 24.0)]
+        [DataRow(1000, 1000, 5000, UnitOfMeasure.milimeter, 22.0)]
+        [DataRow(3.0, 1.5, 1.0, UnitOfMeasure.meter, 18.0)]
+        [DataRow(15, 300, 10, UnitOfMeasure.milimeter, 0.0153)]
+        public void Field_All_Parameters(double a, double b, double c, UnitOfMeasure d, double expectedFieldResult)
+        {
+            var p = new Pudelko(a, b, c, d);
+            Assert.AreEqual(expectedFieldResult, p.Field);
+        }
 
         #endregion
 
@@ -527,7 +549,26 @@ namespace PudelkoUnitTests
         #endregion
 
         #region Parsing =========================================
+        [DataTestMethod, TestCategory("Parsing")]
+        [DataRow("2.500 m × 9.321 m × 0.100 m", 2.5, 9.321, 0.1, UnitOfMeasure.meter)]
+        [DataRow("250.0 cm × 932.1 cm × 10.0 cm", 250.0, 932.1, 10.0, UnitOfMeasure.centimeter)]
+        [DataRow("2500 mm × 9321 mm × 100 mm", 2500, 9321, 100, UnitOfMeasure.milimeter)]
+        public void Parse_Culture_EN(string input, double a, double b, double c, UnitOfMeasure u)
+        {
+            var p = new Pudelko(a, b, c, u);
+            Assert.AreEqual(p, Pudelko.Parse(input));
+        }
 
+        [DataTestMethod, TestCategory("Parsing")]
+        [DataRow("")]
+        [DataRow(null)]
+        [DataRow("1 2 3")]
+        [DataRow("1 m 2 cm 3 mm 4 kg")]
+        [DataRow("2500  × 9321 kg × 100 mm")]
+        public void Parse_WrongFormat_FormatException(string input)
+        {
+            Assert.ThrowsException<FormatException>(() => Pudelko.Parse(input));
+        }
         #endregion*/
     }
 }

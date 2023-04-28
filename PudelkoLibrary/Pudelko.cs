@@ -169,7 +169,7 @@ namespace PudelkoLibrary
             return new double[] { p.A, p.B, p.C };
         }
 
-        public static implicit operator Pudelko(ValueTuple<int,int,int> dimensions)
+        public static implicit operator Pudelko(ValueTuple<int, int, int> dimensions)
         {
             return new Pudelko(dimensions.Item1, dimensions.Item2, dimensions.Item3, UnitOfMeasure.milimeter);
         }
@@ -212,11 +212,11 @@ namespace PudelkoLibrary
         }
 
         private static readonly Dictionary<string, double> UnitMultipliers = new Dictionary<string, double>
-        {
-            { "m", 1.0 },
-            { "cm", 0.01 },
-            { "mm", 0.001 }
-        };
+         {
+             { "m", 1.0 },
+             { "cm", 0.01 },
+             { "mm", 0.001 }
+         };
 
         private static double ParseDimension(string s)
         {
@@ -236,8 +236,8 @@ namespace PudelkoLibrary
             }
 
             return value * UnitMultipliers[unit];
+            #endregion
         }
-        #endregion
     }
 }
 
