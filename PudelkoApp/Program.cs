@@ -7,48 +7,7 @@ namespace PudelkoApp
     {
         static void Main(string[] args)
         {
-            /*var p = new Pudelko(8, 4, 2, unit: UnitOfMeasure.meter);
-            var a = new Pudelko(5, 3, 2);
-
-            var p3 = p + a;
-            Console.WriteLine(p3.Volume.ToString());
-            Console.WriteLine(p3.A);
-            Console.WriteLine(p3.B);
-            Console.WriteLine(p3.C);
-            Console.WriteLine();
-
-            var b = new Pudelko(5, 4, 3);
-            var c = new Pudelko(6, 5, 4);
-
-            var p4 = b + c;
-            Console.WriteLine(p4.Volume);
-            Console.WriteLine(p4.A);
-            Console.WriteLine(p4.B);
-            Console.WriteLine(p4.C);*/
-
-            /*string s = "2.500 cm × 9.321 cm × 0.100 cm";
-
-            var p = new Pudelko(2.5, 9.321, 0.1);
-            var p1 = new Pudelko(2.5, 9.321, 0.1, UnitOfMeasure.meter);
-            var p2 = new Pudelko(2.5, 9.32, 0.1, UnitOfMeasure.centimeter);
-            var p3 = new Pudelko(2500, 9321, 100, UnitOfMeasure.milimeter);
-
-            var ps = Pudelko.Parse(s);
-
-            Console.WriteLine(p == ps);
-            Console.WriteLine(p == p1);
-            Console.WriteLine(p1 == ps);
-            Console.WriteLine(p2 == ps);
-            Console.WriteLine(p3 == ps);*/
-
-            /*var p = new Pudelko(2.03, 4.3, 9.66, UnitOfMeasure.meter);
-            Console.WriteLine(p.ToString("mm"));
-            Console.WriteLine(p.Volume);
-
-            var pk = Kompresuj(p);
-            Console.WriteLine(pk.ToString("mm"));
-            Console.WriteLine(pk.Volume);*/
-
+            // Sorting boxes
             var pudelka = new List<Pudelko>
             {
                 new Pudelko(1.5, 2.0, 3.0),
@@ -82,6 +41,61 @@ namespace PudelkoApp
             {
                 Console.WriteLine(p.ToString());
             }
+
+            // Introduction of individual implementations
+            Console.WriteLine("\nIntroduction of individual implementations");
+
+            var p1 = new Pudelko(2.5, 9.321, 0.1);
+            var p2 = new Pudelko(2.5, 9.321, 0.1, UnitOfMeasure.meter);
+            var p3 = new Pudelko(2.5, 9.32, 0.1, UnitOfMeasure.centimeter);
+            var p4 = new Pudelko(2500, 9321, 100, UnitOfMeasure.milimeter);
+
+            // ToString implementation
+            string s1 = p1.ToString();
+            string s2 = p1.ToString("m");
+            string s3 = p1.ToString("cm");
+            string s4 = p1.ToString("mm");
+            Console.WriteLine($"p1 = {s1}");
+            Console.WriteLine($"p1 = {s2}");
+            Console.WriteLine($"p1 = {s3}");
+            Console.WriteLine($"p1 = {s4}");
+
+            // Volume and Field properties
+            Console.WriteLine($"\nVolume = {p1.Volume} m\u00B3");
+            Console.WriteLine($"Field = {p1.Field} m\u00B2");
+
+            // Equals
+            Console.WriteLine($"\np1 == p2: {p1 == p2}");
+            Console.WriteLine($"p1 != p2: {p1 != p2}");
+            Console.WriteLine($"Equals(p1, p3): {Equals(p1, p3)}");
+            Console.WriteLine($"p1.Equals(p4): {p1.Equals(p4)}\n");
+
+            // Operator +
+
+            // Conversion explicit and implicit
+            var explicitArr = (double[])p1;
+            Console.WriteLine($"p1 dimensions: {String.Join(" × ", explicitArr.Select(e => e.ToString()))}");
+            Pudelko p5 = (20, 30, 40);
+            Console.WriteLine($"{p5.ToString()}\n");
+
+            // Indexer and foreach loop
+            Console.WriteLine(p1[0]);
+            Console.WriteLine(p1[1]);
+            Console.WriteLine(p1[2]);
+
+            Console.WriteLine();
+
+            foreach (var dimension in p1)
+            {
+                Console.WriteLine(dimension);
+            }
+
+            // Parsing
+            var s = "2.5 cm × 9.32 cm × 0.1 cm";
+            Console.WriteLine($"\nstring \"{s}\" == to p3: {Pudelko.Parse(s) == p3}");
+
+            // Compress
+            Console.WriteLine($"Dimensions of box p1 after compression: {p1.Kompresuj().ToString()}");
         }
 
         public static Pudelko Kompresuj(this Pudelko p)
