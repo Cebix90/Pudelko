@@ -496,7 +496,21 @@ namespace PudelkoUnitTests
         #endregion
 
         #region Operators overloading ===========================
-        // ToDo
+        [TestMethod]
+        [DataRow(300, 10, 10, UnitOfMeasure.centimeter, 3000, 100, 100, UnitOfMeasure.milimeter, 3, 0.1, 0.2)]
+        [DataRow(3000, 100, 50, UnitOfMeasure.milimeter, 3000, 2000, 100, UnitOfMeasure.milimeter, 3, 2, 0.15)]
+        [DataRow(2.1, 3, 0.1, UnitOfMeasure.meter, 4, 3, 1, UnitOfMeasure.meter, 4, 3, 1.1)]
+        [DataRow(0.5, 0.5, 0.5, UnitOfMeasure.meter, 500, 500, 500, UnitOfMeasure.milimeter, 0.5, 0.5, 1)]
+        public void Adding_Two_Boxes_With_All_Parameters(double a, double b, double c, UnitOfMeasure d,
+            double e, double f, double g, UnitOfMeasure h,
+            double i, double j, double k)
+        {
+            var p1 = new Pudelko(a, b, c, d);
+            var p2 = new Pudelko(e, f, g, h);
+            var p3 = new Pudelko(i, j, k);
+
+            Assert.AreEqual(p3, p1 + p2);
+        }
         #endregion
 
         #region Conversions =====================================

@@ -71,6 +71,8 @@ namespace PudelkoApp
             Console.WriteLine($"p1.Equals(p4): {p1.Equals(p4)}\n");
 
             // Operator +
+            var packingBox = p1 + p2;
+            Console.WriteLine($"packingBox to fit the box p1 and p2 has dimensions: {packingBox.ToString()}\n");
 
             // Conversion explicit and implicit
             var explicitArr = (double[])p1;
