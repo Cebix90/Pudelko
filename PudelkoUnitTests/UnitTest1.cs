@@ -440,7 +440,7 @@ namespace PudelkoUnitTests
         public void Volume_All_Parameters (double a, double b, double c, UnitOfMeasure d, double expectedVolumeResult)
         {
             var p = new Pudelko(a, b, c, d);
-            Assert.AreEqual(expectedVolumeResult, p.Volume);
+            Assert.AreEqual(expectedVolumeResult, p.Objetosc);
         }
 
         [DataTestMethod, TestCategory("SurfaceArea")]
@@ -452,7 +452,7 @@ namespace PudelkoUnitTests
         public void SurfaceArea_All_Parameters(double a, double b, double c, UnitOfMeasure d, double expectedFieldResult)
         {
             var p = new Pudelko(a, b, c, d);
-            Assert.AreEqual(expectedFieldResult, p.SurfaceArea);
+            Assert.AreEqual(expectedFieldResult, p.Pole);
         }
 
         #endregion

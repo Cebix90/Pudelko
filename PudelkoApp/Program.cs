@@ -25,10 +25,10 @@ namespace PudelkoApp
 
             Comparison<Pudelko> kryteriumSortowania = (p1, p2) =>
             {
-                int result = p1.Volume.CompareTo(p2.Volume);
+                int result = p1.Objetosc.CompareTo(p2.Objetosc);
                 if (result != 0) return result;
 
-                result = p1.SurfaceArea.CompareTo(p2.SurfaceArea);
+                result = p1.Pole.CompareTo(p2.Pole);
                 if (result != 0) return result;
 
                 return (p1.A + p1.B + p1.C).CompareTo(p2.A + p2.B + p2.C);
@@ -61,8 +61,8 @@ namespace PudelkoApp
             Console.WriteLine($"p1 = {s4}");
 
             // Volume and SurfaceArea properties
-            Console.WriteLine($"\nVolume = {p1.Volume} m\u00B3");
-            Console.WriteLine($"Field = {p1.SurfaceArea} m\u00B2");
+            Console.WriteLine($"\nVolume = {p1.Objetosc} m\u00B3");
+            Console.WriteLine($"Field = {p1.Pole} m\u00B2");
 
             // Equals
             Console.WriteLine($"\np1 == p2: {p1 == p2}");
@@ -102,7 +102,7 @@ namespace PudelkoApp
 
         public static Pudelko Kompresuj(this Pudelko p)
         {
-            double volume = p.Volume;
+            double volume = p.Objetosc;
 
             double a = Math.Pow(volume, 1.0 / 3.0);
 
